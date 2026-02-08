@@ -1,4 +1,13 @@
-import { ChromaClient } from "chromadb";
+import { CloudClient } from 'chromadb';
+import dotenv from 'dotenv';
 
-const chroma = new ChromaClient();
-export const portfolioCollection = await chroma.createCollection({ name: "chroma-portfolio-store" });
+dotenv.config();
+
+const client = new CloudClient();
+
+const portfolioCollection = await client.getOrCreateCollection({
+name: "chroma-portfolio-store"
+});
+
+export { portfolioCollection };
+
